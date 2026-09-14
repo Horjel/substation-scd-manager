@@ -8,6 +8,22 @@ Ejercicio técnico de entrevista y portfolio: una plataforma web para gestionar 
 
 El generador del primer milestone es **simulado y determinista**. No implementa el estándar IEC 61850 completo ni acredita conformidad o interoperabilidad con herramientas industriales.
 
+## Capturas
+
+### Propuesta de valor
+
+![Portada de Substation SCD Manager con la arquitectura asíncrona del proyecto](docs/images/home.png)
+
+### Gestión de subestaciones
+
+![Listado de subestaciones con una configuración de demostración](docs/images/substations.png)
+
+### Generación SCD completada
+
+![Detalle de una subestación con una generación simulada completada y disponible para descarga](docs/images/generation-success.png)
+
+Las imágenes proceden de un entorno Docker Compose aislado y contienen únicamente datos ficticios. La generación mostrada recorrió la cola y el worker real del proyecto; el XML continúa siendo el simulador no conforme del MVP.
+
 ## Ejecutar el proyecto
 
 Requisitos comunes: Docker Desktop con motor Linux y Compose v2. Para desarrollo local también se requieren Node.js 24 y npm 11. Ejecutar siempre desde la raíz y crear la configuración local solo si aún no existe:
@@ -282,6 +298,10 @@ La auditoría actual de npm informa cuatro avisos altos asociados a dependencias
 
 Los artefactos pequeños del MVP se guardan en PostgreSQL detrás de `ArtifactStore`, con límite de 1 MiB. Una feature posterior incorporará S3/MinIO manteniendo metadatos, estado y referencias en PostgreSQL.
 
+## Licencia
+
+Este proyecto se distribuye bajo la [licencia MIT](LICENSE).
+
 ## Estructura
 
 ```text
@@ -297,6 +317,7 @@ compose.yaml        PostgreSQL, Redis, migrador, web y worker
 prisma.config.ts    Configuración CLI, conexión y migraciones
 tests/              Suites unitarias, PostgreSQL, cola real y Playwright
 .github/workflows/  Integración continua de calidad y recorrido real
+docs/images/         Capturas reales con datos ficticios para el portfolio
 spec/constitution/  Misión, stack y roadmap
 spec/features/001-project-foundation/
                     Especificación, plan y tareas de M1
@@ -304,6 +325,8 @@ spec/features/002-continuous-integration/
                     Especificación, plan y tareas de CI
 spec/features/003-github-publication/
                     Evidencia de la publicación inicial
+spec/features/004-portfolio-polish/
+                    Capturas, licencia y protección de la rama principal
 AGENTS.md           Instrucciones de trabajo spec-anchored
 ```
 
@@ -318,5 +341,6 @@ El flujo obligatorio es **especificación → plan → tareas → implementació
 5. [Roadmap](spec/constitution/roadmap.md): hitos posteriores.
 6. [Feature 002](spec/features/002-continuous-integration/spec.md): preparación Git e integración continua.
 7. [Feature 003](spec/features/003-github-publication/spec.md): publicación inicial y evidencia remota.
+8. [Feature 004](spec/features/004-portfolio-polish/spec.md): presentación visual, licencia y protección de `main`.
 
 El milestone M1 se controla y cierra con evidencia en `tasks.md`. El simulador sigue presentado como una demostración arquitectónica, no como un producto conforme con IEC 61850.
