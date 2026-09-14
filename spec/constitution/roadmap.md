@@ -30,7 +30,7 @@ Objetivo: automatizar la matriz de calidad e integración de M1 y preparar un pr
 
 Objetivo: publicar el commit auditado como repositorio público de portfolio, verificar la CI remota y registrar la evidencia sin desplegar servicios ni imágenes. La definición vive en `spec/features/003-github-publication/`.
 
-## Feature 004 — Presentación profesional del portfolio
+## Feature 004 — Presentación profesional del portfolio (verificada)
 
 Objetivo: incorporar capturas reales y seguras al README, declarar una licencia MIT y proteger `main` con pull request y la CI existente. No cambia el producto ni añade despliegue. La definición vive en `spec/features/004-portfolio-polish/`.
 
