@@ -2,7 +2,7 @@
 
 ## Estado
 
-En implementación.
+Completada y verificada.
 
 ## Objetivo
 
