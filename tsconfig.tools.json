@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "vitest.config.ts",
+    "vitest.db.config.ts",
+    "vitest.queue.config.ts",
+    "prisma.config.ts",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ]
+}

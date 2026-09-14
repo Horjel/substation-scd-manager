@@ -1,0 +1,30 @@
+{
+  "name": "@substation/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "health": "tsx src/health.ts",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@substation/db": "0.1.0",
+    "@substation/domain": "0.1.0",
+    "@substation/queue": "0.1.0",
+    "@substation/scd": "0.1.0",
+    "@substation/storage": "0.1.0",
+    "bullmq": "6.3.4",
+    "dotenv": "^17.0.0",
+    "ioredis": "6.0.0",
+    "tsx": "4.23.13"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "^24.0.0"
+  }
+}

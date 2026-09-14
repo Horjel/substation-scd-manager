@@ -1,0 +1,46 @@
+{
+  "name": "substation-scd-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @substation/web",
+    "start": "npm run start --workspace @substation/web",
+    "worker": "npm run start --workspace @substation/worker",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "npm run db:generate && npm run typecheck --workspaces --if-present && tsc --project tsconfig.tools.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "prisma generate",
+    "db:validate": "prisma validate",
+    "db:migrate": "prisma migrate deploy",
+    "db:status": "prisma migrate status",
+    "db:seed": "prisma db seed",
+    "test:db": "npm run db:generate && vitest run --config vitest.db.config.ts",
+    "test:queue": "npm run db:generate && vitest run --config vitest.queue.config.ts",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "dotenv": "^17.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.3.5",
+    "fast-xml-parser": "5.11.1",
+    "prisma": "7.10.0",
+    "tsx": "^4.0.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+# Dependencias y salidas generadas
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+packages/db/src/generated/
+
+# Configuración local; conservar la plantilla pública
+.env*
+!.env.example
+
+# Logs y herramientas
+*.log
+playwright-report/
+test-results/
+.vercel/
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

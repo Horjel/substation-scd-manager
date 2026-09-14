@@ -1,0 +1,16 @@
+{
+  "name": "@substation/scd",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@substation/domain": "0.1.0",
+    "@substation/storage": "0.1.0"
+  }
+}

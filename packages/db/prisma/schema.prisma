@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ScdGenerationStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+model Substation {
+  id          String                  @id @default(uuid()) @db.Uuid
+  name        String                  @db.VarChar(100)
+  description String?                 @db.VarChar(1000)
+  createdAt   DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime                @updatedAt @db.Timestamptz(3)
+  revisions   ConfigurationRevision[]
+}
+
+model ConfigurationRevision {
+  id           String          @id @default(uuid()) @db.Uuid
+  substationId String          @db.Uuid
+  version      Int
+  content      Json
+  contentHash  String          @db.Char(64)
+  createdAt    DateTime        @default(now()) @db.Timestamptz(3)
+  substation   Substation      @relation(fields: [substationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  generations  ScdGeneration[]
+
+  @@unique([substationId, version])
+  @@index([substationId, contentHash])
+}
+
+model ScdGeneration {
+  id               String                @id @default(uuid()) @db.Uuid
+  revisionId       String                @db.Uuid
+  generatorVersion String                @db.VarChar(64)
+  status           ScdGenerationStatus   @default(QUEUED)
+  createdAt        DateTime              @default(now()) @db.Timestamptz(3)
+  updatedAt        DateTime              @updatedAt @db.Timestamptz(3)
+  startedAt        DateTime?             @db.Timestamptz(3)
+  finishedAt       DateTime?             @db.Timestamptz(3)
+  errorMessage     String?               @db.VarChar(2000)
+  attemptCount     Int                   @default(0)
+  attemptToken     String?               @db.Uuid
+  leaseExpiresAt   DateTime?             @db.Timestamptz(3)
+  revision         ConfigurationRevision @relation(fields: [revisionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  outbox           GenerationOutbox?
+  artifact         GeneratedArtifact?
+
+  @@index([revisionId, createdAt])
+  @@index([status, createdAt])
+}
+
+model GenerationOutbox {
+  id              String        @id @default(uuid()) @db.Uuid
+  generationId    String        @unique @db.Uuid
+  eventName       String        @db.VarChar(64)
+  payloadVersion  Int
+  createdAt       DateTime      @default(now()) @db.Timestamptz(3)
+  publishedAt     DateTime?     @db.Timestamptz(3)
+  publishAttempts Int           @default(0)
+  lastError       String?       @db.VarChar(1000)
+  nextAttemptAt   DateTime      @default(now()) @db.Timestamptz(3)
+  generation      ScdGeneration @relation(fields: [generationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@index([publishedAt, nextAttemptAt, createdAt])
+}
+
+model GeneratedArtifact {
+  id              String        @id @default(uuid()) @db.Uuid
+  generationId    String        @unique @db.Uuid
+  storageProvider String        @db.VarChar(32)
+  storageKey      String        @unique @db.VarChar(255)
+  fileName        String        @db.VarChar(255)
+  mimeType        String        @db.VarChar(100)
+  byteSize        Int
+  checksum        String        @db.Char(64)
+  content         Bytes
+  createdAt       DateTime      @default(now()) @db.Timestamptz(3)
+  generation      ScdGeneration @relation(fields: [generationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@index([checksum])
+}
