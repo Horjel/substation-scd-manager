@@ -30,6 +30,10 @@ Objetivo: automatizar la matriz de calidad e integración de M1 y preparar un pr
 
 Objetivo: publicar el commit auditado como repositorio público de portfolio, verificar la CI remota y registrar la evidencia sin desplegar servicios ni imágenes. La definición vive en `spec/features/003-github-publication/`.
 
+## Feature 004 — Presentación profesional del portfolio
+
+Objetivo: incorporar capturas reales y seguras al README, declarar una licencia MIT y proteger `main` con pull request y la CI existente. No cambia el producto ni añade despliegue. La definición vive en `spec/features/004-portfolio-polish/`.
+
 ## Evolución opcional de almacenamiento tras M1
 
 Una feature separada puede añadir un adaptador S3/MinIO antes o en paralelo a M2. Guardará objetos por clave estable y conservará metadatos y estado en PostgreSQL. Su aceptación exigirá ejecutar las mismas pruebas de contrato de almacenamiento, migrar un artefacto sin alterar bytes/checksum y conservar la descarga desde la API. Debe contemplar fallos entre escritura de objeto y commit, limpieza de huérfanos y reversión al adaptador anterior. No se añade MinIO a Docker Compose en M1.
