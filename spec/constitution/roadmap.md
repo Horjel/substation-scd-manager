@@ -26,6 +26,10 @@ No incluye conformidad IEC 61850. La definición completa está en `spec/feature
 
 Objetivo: automatizar la matriz de calidad e integración de M1 y preparar un primer commit local auditable. No incluye repositorio remoto, publicación de imágenes ni despliegue. La definición vive en `spec/features/002-continuous-integration/`.
 
+## Feature 003 — Publicación inicial en GitHub (verificada)
+
+Objetivo: publicar el commit auditado como repositorio público de portfolio, verificar la CI remota y registrar la evidencia sin desplegar servicios ni imágenes. La definición vive en `spec/features/003-github-publication/`.
+
 ## Evolución opcional de almacenamiento tras M1
 
 Una feature separada puede añadir un adaptador S3/MinIO antes o en paralelo a M2. Guardará objetos por clave estable y conservará metadatos y estado en PostgreSQL. Su aceptación exigirá ejecutar las mismas pruebas de contrato de almacenamiento, migrar un artefacto sin alterar bytes/checksum y conservar la descarga desde la API. Debe contemplar fallos entre escritura de objeto y commit, limpieza de huérfanos y reversión al adaptador anterior. No se añade MinIO a Docker Compose en M1.

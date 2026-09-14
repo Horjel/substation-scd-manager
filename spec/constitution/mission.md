@@ -10,7 +10,7 @@ Este ejercicio técnico de entrevista demuestra diseño de APIs, persistencia tr
 
 Recorrido de la demo: crear proyecto → guardar configuración → solicitar generación → consultar estado → descargar XML simulado. Para revisar el proyecto, leer esta misión, los criterios de aceptación de `spec/features/001-project-foundation/spec.md` y las decisiones de su `plan.md`. `tasks.md` distingue con evidencia las capacidades verificadas del trabajo futuro.
 
-La publicación en GitHub se realizará en una etapa posterior. El README actual documenta la demo completa de M1, sus pruebas, decisiones y limitaciones con datos ficticios, y distingue lo implementado de los planes posteriores.
+El proyecto está publicado como portfolio en `Horjel/substation-scd-manager`. El README documenta la demo completa de M1, sus pruebas, decisiones y limitaciones con datos ficticios, y distingue lo implementado de los planes posteriores.
 
 ## Problema
 

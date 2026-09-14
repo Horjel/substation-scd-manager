@@ -1,5 +1,7 @@
 # Substation SCD Manager
 
+[![CI](https://github.com/Horjel/substation-scd-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/Horjel/substation-scd-manager/actions/workflows/ci.yml)
+
 Ejercicio técnico de entrevista y portfolio: una plataforma web para gestionar configuraciones de subestaciones y solicitar archivos SCD de forma asíncrona.
 
 **Estado actual:** recorrido vertical implementado y verificado. La web permite crear y consultar subestaciones, guardar revisiones inmutables, solicitar una generación, seguir sus estados y descargar únicamente el SCD vigente. PostgreSQL, Redis, BullMQ, el worker independiente y el generador simulado se prueban también de forma aislada.
@@ -259,7 +261,7 @@ La última verificación contiene 23 pruebas sin servicios externos, 12 pruebas 
 - **Quality:** Node.js 24, instalación desde lockfile, lint, TypeScript estricto, 23 pruebas Vitest y build.
 - **PostgreSQL, queue and browser:** PostgreSQL 17 y Redis 7 reales, migraciones, 12 pruebas PostgreSQL/API, 7 de BullMQ/worker y 2 recorridos Playwright.
 
-El runner Ubuntu 24.04 ya incluye Google Chrome. Las credenciales declaradas en el workflow son valores ficticios que solo existen dentro de sus servicios efímeros; la CI no usa secretos de producción, no publica imágenes y no despliega. Los mismos comandos pueden ejecutarse localmente mediante la sección “Comprobaciones”. El badge se añadirá después de crear el repositorio remoto, cuando exista una URL estable.
+El runner Ubuntu 24.04 ya incluye Google Chrome. Las credenciales declaradas en el workflow son valores ficticios que solo existen dentro de sus servicios efímeros; la CI no usa secretos de producción, no publica imágenes y no despliega. Los mismos comandos pueden ejecutarse localmente mediante la sección “Comprobaciones”. El badge superior enlaza el resultado actual del workflow remoto.
 
 ## Decisiones técnicas
 
@@ -300,6 +302,8 @@ spec/features/001-project-foundation/
                     Especificación, plan y tareas de M1
 spec/features/002-continuous-integration/
                     Especificación, plan y tareas de CI
+spec/features/003-github-publication/
+                    Evidencia de la publicación inicial
 AGENTS.md           Instrucciones de trabajo spec-anchored
 ```
 
@@ -313,5 +317,6 @@ El flujo obligatorio es **especificación → plan → tareas → implementació
 4. [Tareas](spec/features/001-project-foundation/tasks.md): estado verificado y trabajo pendiente.
 5. [Roadmap](spec/constitution/roadmap.md): hitos posteriores.
 6. [Feature 002](spec/features/002-continuous-integration/spec.md): preparación Git e integración continua.
+7. [Feature 003](spec/features/003-github-publication/spec.md): publicación inicial y evidencia remota.
 
 El milestone M1 se controla y cierra con evidencia en `tasks.md`. El simulador sigue presentado como una demostración arquitectónica, no como un producto conforme con IEC 61850.
